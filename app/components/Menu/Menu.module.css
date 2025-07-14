@@ -1,7 +1,7 @@
-.statusMenu {
+.menuContainer {
   position: fixed;
   height: 100vh;
-  width: 250px;
+  width: 192px;
   background-color: var(--white);
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -34,7 +34,7 @@
       justify-content: center;
       transition: background-color 0.3s;
       gap: 5px;
-       transition: transform 0.3s;
+      transition: transform 0.3s;
 
 
       & .statsIcon {
@@ -57,7 +57,7 @@
 
     & .active {
       background-color: #1b0066b9;
-      color: var(--highlight-yellow-500);
+      color: var(--highlight-yellow-600);
 
     }
 

@@ -1,0 +1,92 @@
+
+.appStatusRow {
+    display: flex;
+    min-width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.leftAppStatus {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.rightAppStatus {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+.notificationContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.notificationIcon {
+    width: 1.8rem;
+    height: 1.8rem;
+    color: var(--secundary-purple-500);
+}
+
+.settingsIcon{
+    width: 1.8rem;
+    height: 1.8rem;
+    color: var(--secundary-purple-500);
+}
+
+.notificationDot {
+    margin-left: -0.8rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--highlight-yellow-500);
+    border-radius: 50%;
+}
+
+.profileContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.1rem;
+    height: 3.1rem;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.profileIcon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--secundary-purple-500);
+}
+
+.profileText {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileName {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--secundary-purple-500);
+}
+
+.profileStatus {
+    font-size: 0.9rem;
+    color: var(--highlight-black-500);
+}
+
+.profileStatusDot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--secundary-purple-500);
+    border-radius: 50%;
+    margin-left: 0.5rem;
+}
+
+.profileStatusContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+}

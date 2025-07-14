@@ -1,0 +1,12 @@
+.rightBoard {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    right: 0;
+    width: 350px;
+    margin-right: 6%;
+    margin-top: 2.5rem;
+    min-width: 350px;
+    border-radius: 10px;
+    gap: 1rem;
+}

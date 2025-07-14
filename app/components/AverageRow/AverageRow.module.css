@@ -1,0 +1,75 @@
+
+.averageRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.dailyAverage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    height: 100px;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px #00000010;
+
+    & .title{
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--highlight-black-500);
+    }
+
+    & .counter{
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--highlight-black-800);
+    }
+}
+
+.sessionAverage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 62%;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px #00000010;
+
+    & .sessionAverageContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 75%;
+        flex-wrap: wrap;
+    }
+
+    & .title{
+        min-width: 80%;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--highlight-black-500);
+    }
+
+    & .counter{
+        width: 22%;
+        font-size: 1.7rem;
+        font-weight: 400;
+        color: var(--highlight-black-800);
+    }
+
+    & .counterText{
+        width: 90px;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--highlight-black-800);
+    }
+}

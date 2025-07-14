@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react';
 export default function Menu() {
     const pathname = usePathname();
     return(
-            <div className={styles.statusMenu}>
+            <div className={styles.menuContainer}>
                 <a href="/" className={styles.titleMenu}>PostVision</a>
                 <div className={styles.menuLinks}>
                     <a href="/Status" className={`${styles.link} ${pathname === '/Status' ? styles.active : ''}`}>
