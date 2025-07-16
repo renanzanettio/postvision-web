@@ -2,7 +2,7 @@
 import styles from './StreakCalendar.module.css';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import ptBR from 'date-fns/locale/pt-BR';
+import { ptBR } from 'date-fns/locale/pt-BR';
 
 const streakDays = [
   // inicia o mês em 0
