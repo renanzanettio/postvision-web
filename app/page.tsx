@@ -3,9 +3,6 @@ import styles from "./home.module.css";
 import Navbar from "./components/Navbar/Navbar";
 import MobileHomeScreen from '../public/images/mobile-home-screen.png';
 import { Icon } from '@iconify/react';
-import Logo from '../public/images/logo-purple.svg';
-import LogoMaior from '../public/images/logo-maior.svg';
-// import Logo from '../public/images/logo-yellow.svg';
 
 
 export default function Home() {

@@ -1,7 +1,5 @@
 "use client";
-import Image from "next/image";
 import styles from "./Status.module.css";
-import { Icon } from "@iconify/react";
 import Menu from "../components/Menu/Menu";
 import RightBoard from "../components/RightBoard/RightBoard";
 import DashboardGraphs from "../../public/images/dashboard-graphs.svg";
@@ -9,6 +7,8 @@ import { useState } from "react";
 import FilterRow from "../components/FilterRow/FilterRow";
 import WeeklyPerformanceChart from "../components/WeeklyPerformanceChart/WeeklyPerformanceChart";
 import LastTrainingChart from "../components/LastTrainingChart/LastTrainingChart";
+import MonthlyComparisionChart from "../components/MonthlyComparisionChart/MonthlyComparisionChart";
+import Image from "next/image";
 
 
 export default function Status() {
@@ -34,13 +34,7 @@ export default function Status() {
           <LastTrainingChart />
 
 
-          <div className={styles.graphContainer}>
-            <div className={styles.title}>Comparativo Mensal</div>
-            <div className={styles.subtitle}>Agachamento</div>
-            <div className={styles.chart}>
-              
-            </div>
-          </div>
+          <MonthlyComparisionChart />
 
         </div>
 

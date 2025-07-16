@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import styles from "./FilterRow.module.css";
 import { Icon } from "@iconify/react";
 import { useState } from "react";

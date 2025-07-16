@@ -1,6 +1,4 @@
-import Image from "next/image";
 import styles from "./AverageRow.module.css";
-import { Icon } from "@iconify/react";
 
 export default function AverageRow() {
   return (

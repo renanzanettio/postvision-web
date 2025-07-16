@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./AppStatusRow.module.css";
 import { Icon } from "@iconify/react";
 

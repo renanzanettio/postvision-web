@@ -1,0 +1,28 @@
+.graphContainer {
+    padding: 1rem 1.5rem;
+    width: fit-content;
+    width: 45%;
+    min-width: 400px;
+    min-height: 350px;
+    max-height: 350px;
+    background-color: var(--white);
+    border-radius: 10px;
+
+  & .title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--highlight-black-500);
+  }
+
+  & .subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--highlight-black-700);
+  }
+
+}
+
+.chart {
+  margin-top: 1.5rem;
+  transform: translateX(-5%);
+}

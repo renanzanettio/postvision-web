@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./RightBoard.module.css";
 import { Icon } from "@iconify/react";
 import Menu from "../Menu/Menu";

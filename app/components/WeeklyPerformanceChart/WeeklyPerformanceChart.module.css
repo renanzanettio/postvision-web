@@ -4,6 +4,7 @@
   width: 45%;
   min-width: 400px;
   min-height: 350px;
+  max-height: 350px;
   background-color: var(--white);
   border-radius: 10px;
 
@@ -23,8 +24,5 @@
 
 .chart {
     margin-top: 1rem;
-}
-
-.rechartsResponsiveContainer {
-    transform: translateX(-3%);
+    transform: translateY(3%);
 }

@@ -30,7 +30,7 @@ export default function WeeklyPerformanceChart() {
             <div className={styles.title}>Desempenho Semanal</div>
             <div className={styles.subtitle}>Agachamento</div>
             <div className={styles.chart}>
-                <ResponsiveContainer width="100%" height={300} className={styles.rechartsResponsiveContainer}>
+                <ResponsiveContainer width={450} height={250}>
                     <BarChart data={data} barCategoryGap="20%">
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
                     <XAxis dataKey="name" />
@@ -41,7 +41,7 @@ export default function WeeklyPerformanceChart() {
                         height={36}
                         iconType="circle"
                         formatter={(value) => (
-                        <span style={{ color: '#1c1c1c', fontSize: 14 }}>{value}</span>
+                        <span style={{ color: '#1c1c1c', fontSize: 16 }}>{value}</span>
                         )}
                     />
                     <Bar
