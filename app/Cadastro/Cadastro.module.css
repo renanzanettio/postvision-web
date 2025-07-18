@@ -469,13 +469,21 @@
   .signUpContainer {
     flex-direction: column;
   }
-  .signUpWelcome, .signUpFormSection {
+  .signUpFormSection {
     flex: unset;
     width: 100%;
     min-height: 320px;
   }
+
+  .signUpWelcome {
+    display: none !important;
+  }
+
   .signUpFormBox {
+    margin-top: 60px;
+    margin-bottom: 60px;
     max-width: 98vw;
+    padding: 0;
   }
 }
 

@@ -2,12 +2,13 @@ import Link from 'next/link';
 import styles from './Navbar.module.css';
 import Image from 'next/image';
 import Logo from '../../../public/images/logo-purple.svg';
+import { Icon } from '@iconify/react';
 
 export default function Navbar() {
     return (
         <div className={styles.navbar}>
             <div className={styles.logo}>
-                <Image src={Logo} alt="PostVision Logo" className={styles.logoImg}/>
+                {/* <Image src={Logo} alt="PostVision Logo" className={styles.logoImg}/> */}
                 <Link href="/" className={styles.logoText}>PostVision</Link>
             </div>
             <ul className={styles.navLinks}>
@@ -20,6 +21,7 @@ export default function Navbar() {
                 <Link href="/Entrar" className={`${styles.login} ${styles.button}`}>Entrar</Link>
                 <Link href="/Cadastro" className={`${styles.signup} ${styles.button}`}>Cadastrar</Link>
             </div>
+            <Icon icon="mdi:menu" className={styles.menuIcon} />
         </div>
     );
 }

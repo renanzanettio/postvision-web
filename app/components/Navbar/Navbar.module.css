@@ -66,5 +66,31 @@
 
   }
 
+  & .menuIcon {
+    display: none;
+  }
 
+}
+
+@media (max-width: 600px) {
+
+  .navbar {
+    padding: 12px 5%;
+  }
+
+  .navLinks {
+    display: none !important;
+  }
+
+  .logoImg {
+    display: none !important;
+  }
+
+  .menuIcon {
+    display: none !important;
+    width: 32px;
+    height: 32px;
+    color: var(--secundary-purple-500);
+    cursor: pointer;
+  }
 }

@@ -30,7 +30,7 @@
 @media (max-width: 600px) {
   .graphContainer {
     width: 90% !important;
-    transform: scale(0.8) translateX(-13%);
+    transform: scale(0.75) translateX(-15%);
     margin-top: -50px;
   }
 }

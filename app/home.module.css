@@ -171,3 +171,39 @@
 
     }
 }
+
+@media (max-width: 600px) {
+    .homeContainer {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        margin-inline: 0;
+        width: 100%;
+    }
+
+    .textContent {
+        margin-top: 50px;
+        width: 90% !important;
+        margin-inline: 5% !important;
+    }
+
+    .imageContent {
+        justify-content: center !important;
+        display: none !important;
+    }
+
+    .img {
+        min-width: 100%;
+    }
+
+    .homeButtons {
+        gap: 0px !important;
+    }
+
+    .button {
+        padding: 6px 12px !important;
+    }
+
+
+
+}

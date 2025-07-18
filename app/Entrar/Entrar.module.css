@@ -67,7 +67,6 @@
 
 .loginFormSection {
   flex: 1;
-  min-height: 100vh;
   background: var(--secundary-purple-950);
   display: flex;
   flex-direction: column;
@@ -221,5 +220,22 @@
   }
   .loginFormBox {
     max-width: 98vw;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .loginWelcome {
+    display: none !important
+  }
+
+  .loginFormSection{
+    min-height: 100% !important;
+    height: 100% !important;
+    flex: 1;
+  }
+
+  .loginFormBox {
+    padding: 0;
   }
 }

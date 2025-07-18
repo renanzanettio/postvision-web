@@ -1,6 +1,6 @@
 .menuContainer {
   position: fixed;
-  height: 100vh;
+  height: 100%;
   width: 192px;
   background-color: var(--white);
   padding: 1rem;
