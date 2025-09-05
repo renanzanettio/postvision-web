@@ -1,10 +1,10 @@
 "use client";
 import Image from 'next/image';
 import styles from './Entrar.module.css';
-import Graphs1 from '../../public/images/graphs-1.svg';
-import Graphs2 from '../../public/images/graphs-2.svg';
-import LogoGoogle from '../../public/images/logo-google.svg';
-import LogoMicrosoft from '../../public/images/logo-microsoft.svg';
+import Graphs1 from '@/public/images/graphs-1.svg';
+import Graphs2 from '@/public/images/graphs-2.svg';
+import LogoGoogle from '@/public/images/logo-google.svg';
+import LogoMicrosoft from '@/public/images/logo-microsoft.svg';
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import styles from "./home.module.css";
-import Navbar from "./components/Navbar/Navbar";
-import MobileHomeScreen from '../public/images/mobile-home-screen.png';
+import Navbar from "../components/Navbar/Navbar";
+import MobileHomeScreen from '@/public/images/mobile-home-screen.png';
 import { Icon } from '@iconify/react';
-import LogoMaior from '../public/images/logo-maior.svg';
+import LogoMaior from '@/public/images/logo-maior.svg';
 
 
 export default function Home() {
