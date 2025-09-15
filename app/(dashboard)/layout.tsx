@@ -33,13 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable}`}>
-      <body>
-        <ClientLayout>
-          <Menu />
-          {children}
-        </ClientLayout>
-      </body>
-    </html>
+    <div className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable}`}>
+      <ClientLayout>
+        <Menu />
+        {children}
+      </ClientLayout>
+    </div>
   );
 }

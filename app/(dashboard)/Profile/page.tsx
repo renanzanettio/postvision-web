@@ -17,7 +17,11 @@ export default function Profile() {
     <div className={styles.reverseContainer}>
       <div className={styles.mainContainer}>
         <div className={styles.profileContainer}>
-          
+          <div className={styles.profileInfo}>
+            
+          </div>
+          <div className={styles.contentContainer}>Informações Pessoais</div>
+          <div className={styles.contentContainer}>Segurança</div>
         </div>
       </div>
 
