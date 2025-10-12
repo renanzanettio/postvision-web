@@ -1,7 +1,13 @@
+"use client";
 import styles from "./AppStatusRow.module.css";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
+import { usePathname } from 'next/navigation';
+
 
 export default function AppStatusRow() {
+  const pathname = usePathname();
+
   return (
     <div className={styles.appStatusRow}>
       <div className={styles.leftAppStatus}>
@@ -12,10 +18,10 @@ export default function AppStatusRow() {
           />
           <div className={styles.notificationDot}></div>
         </div>
-        <Icon
+        <Link href="/Settings"><Icon
           icon="material-symbols:settings-rounded"
-          className={styles.settingsIcon}
-        />
+          className={`${styles.settingsIcon} ${pathname === '/Settings' ? styles.active : ''}`}
+        /></Link>
       </div>
       <div className={styles.rightAppStatus}>
         <div className={styles.profileText}>

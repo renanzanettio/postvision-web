@@ -78,7 +78,7 @@ export default function Entrar() {
           <div className={styles.loginAccountLink}>
             Não tem conta? <a href="/Cadastro">Cadastrar</a>
           </div>
-          <a href="/Status"><button type="submit" className={styles.loginButton}>Entrar</button></a>
+          <Link href="/Status"><button type="submit" className={styles.loginButton}>Entrar</button></Link>
           <div className={styles.loginDivider}>Ou</div>
           <div className={styles.loginSocialButtons}>
             <button type="button" className={styles.loginSocialBtn}>

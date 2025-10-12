@@ -1,0 +1,27 @@
+.notFoundContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.postvision {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--secundary-purple-500);
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--highlight-black-700);
+    margin-bottom: 0.5rem;
+}
+
+.link {
+    color: var(--secundary-purple-600);
+    text-decoration: none;
+}
