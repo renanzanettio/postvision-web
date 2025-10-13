@@ -21,6 +21,10 @@
   overflow-y: scroll;
 }
 
+.mainContainer::-webkit-scrollbar {
+  display: none;
+}
+
 .settingsContainer {
   
   border-radius: 10px;
