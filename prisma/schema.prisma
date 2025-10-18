@@ -1,3 +1,4 @@
+// schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,48 +8,63 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Usuarios {
-  id_usuario             Int           @id @default(autoincrement())
+model usuarios {
+  id_usuario             Int            @id @default(autoincrement())
   nome_usuario           String
-  email_usuario          String        @unique
+  sobrenome_usuario      String
+  email_usuario          String         @unique
   senha_usuario          String
-  data_nascimento_usuario DateTime?
+  cpf_usuario            String
+  data_nascimento_usuario DateTime
+  genero_usuario         String
+  telefone_usuario       String
+  created_at_usuario     DateTime
   sessoes                SessaoTreino[]
+
+  @@map("Usuarios")
 }
 
-model Exercicios {
-  id_exercicio           Int           @id @default(autoincrement())
-  nome_exercicio         String
-  descricao_exercicio    String?
+model exercicios {
+  id_exercicio            Int            @id @default(autoincrement())
+  nome_exercicio          String
+  descricao_exercicio     String?
   grupo_muscular_exercicio String?
-  sessoes                SessaoTreino[]
+  sessoes                 SessaoTreino[]
+
+  @@map("Exercicios")
 }
 
-model Comentarios {
-  id_comentario          Int           @id @default(autoincrement())
+model comentarios {
+  id_comentario          Int            @id @default(autoincrement())
   texto_comentario       String?
   relatorios             Relatorios[]
+
+  @@map("Comentarios")
 }
 
 model SessaoTreino {
-  id_sessao              Int           @id @default(autoincrement())
+  id_sessao               Int           @id @default(autoincrement())
   caminho_json_landmarks_sessao String?
-  data_atual_sessao      DateTime      @default(now())
-  duracao_sessao         String?
-  id_usuario             Int
-  id_exercicio           Int
-  usuario                Usuarios      @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade)
-  exercicio              Exercicios    @relation(fields: [id_exercicio], references: [id_exercicio])
-  relatorios             Relatorios[]
+  data_atual_sessao       DateTime      @default(now())
+  duracao_sessao          String?
+  id_usuario              Int
+  id_exercicio            Int
+  usuario                 usuarios      @relation(fields: [id_usuario], references: [id_usuario], onDelete: Cascade)
+  exercicio               exercicios    @relation(fields: [id_exercicio], references: [id_exercicio])
+  relatorios              Relatorios[]
+
+  @@map("SessaoTreino")
 }
 
 model Relatorios {
-  id_relatorio           Int           @id @default(autoincrement())
-  quantidade_corretas_relatorio  Float?
+  id_relatorio            Int           @id @default(autoincrement())
+  quantidade_corretas_relatorio   Float?
   quantidade_incorretas_relatorio Float?
-  precisao_media_relatorio Float?
-  id_sessao              Int
-  id_comentario          Int?
-  sessao                 SessaoTreino  @relation(fields: [id_sessao], references: [id_sessao], onDelete: Cascade)
-  comentario             Comentarios?  @relation(fields: [id_comentario], references: [id_comentario])
+  precisao_media_relatorio        Float?
+  id_sessao               Int
+  id_comentario           Int?
+  sessao                  SessaoTreino  @relation(fields: [id_sessao], references: [id_sessao], onDelete: Cascade)
+  comentario              comentarios?  @relation(fields: [id_comentario], references: [id_comentario])
+
+  @@map("Relatorios")
 }

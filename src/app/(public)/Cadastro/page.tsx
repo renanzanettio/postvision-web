@@ -8,9 +8,64 @@ import Graphs2 from "@/public/images/graphs-2.svg";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Cadastro() {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const [formData, setFormData] = useState({
+    nome: "",
+    sobrenome: "",
+    nascimento: "",
+    genero: "",
+    cpf: "",
+    email: "",
+    telefone: "",
+    senha: "",
+  });
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+
+    // Validação básica
+    const { nome, sobrenome, nascimento, genero, cpf, email, telefone, senha } = formData;
+    if (!nome || !sobrenome || !nascimento || !genero || !cpf || !email || !telefone || !senha) {
+      alert("Todos os campos são obrigatórios!");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.error || "Erro ao cadastrar");
+        setLoading(false);
+        return;
+      }
+
+      alert("Cadastro realizado com sucesso!");
+      router.push("/Entrar"); // redireciona para login
+    } catch (err) {
+      console.error("Erro no cadastro:", err);
+      alert("Erro no servidor");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className={styles.signUpContainer}>
@@ -20,32 +75,14 @@ export default function Cadastro() {
           href="/"
           className={styles.backButton}
           title="Voltar para a página inicial"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            textDecoration: "none",
-          }}
+          style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}
         >
-          <Icon
-            icon="mdi:arrow-left"
-            width={24}
-            height={24}
-            className={styles.returnIcon}
-          />
+          <Icon icon="mdi:arrow-left" width={24} height={24} className={styles.returnIcon} />
           <span>Voltar</span>
         </Link>
 
-        <Image
-          alt="Grafos em formato de olho"
-          src={Graphs1}
-          className={styles.signUpCircles}
-        ></Image>
-        <Image
-          alt="Grafos em formato de olho"
-          src={Graphs2}
-          className={styles.signUpCirclesBottom}
-        ></Image>
+        <Image alt="Grafos em formato de olho" src={Graphs1} className={styles.signUpCircles} />
+        <Image alt="Grafos em formato de olho" src={Graphs2} className={styles.signUpCirclesBottom} />
         <h1>Seja Bem-Vindo</h1>
         <p>
           PostVision é uma solução inteligente que usa visão computacional para te ajudar a treinar com mais segurança. Corrija sua postura, evite lesões e acompanhe sua evolução com tecnologia a favor da sua saúde.
@@ -54,35 +91,32 @@ export default function Cadastro() {
 
       {/* Lado direito */}
       <div className={styles.signUpFormSection}>
-        <form className={styles.signUpFormBox}>
+        <form className={styles.signUpFormBox} onSubmit={handleSubmit}>
           <div className={styles.signUpTitle}>Cadastro</div>
+
+          {/* Nome e Sobrenome */}
           <div className={styles.signUpRow}>
             <div className={styles.signUpInputGroup}>
               <label htmlFor="nome">Nome</label>
-              <input id="nome" type="text" placeholder="Nome" />
+              <input id="nome" type="text" placeholder="Nome" value={formData.nome} onChange={handleChange} />
             </div>
             <div className={styles.signUpInputGroup}>
               <label htmlFor="sobrenome">Sobrenome</label>
-              <input id="sobrenome" type="text" placeholder="Sobrenome" />
+              <input id="sobrenome" type="text" placeholder="Sobrenome" value={formData.sobrenome} onChange={handleChange} />
             </div>
           </div>
 
+          {/* Data de Nascimento, Gênero e CPF */}
           <div className={styles.signUpRow}>
             <div className={styles.signUpInputGroup}>
               <label htmlFor="nascimento">Data de Nascimento</label>
-              <input id="nascimento" type="date" />
+              <input id="nascimento" type="date" value={formData.nascimento} onChange={handleChange} />
             </div>
 
             <div className={styles.signUpInputGroup}>
               <label htmlFor="genero">Gênero</label>
-              <select
-                id="genero"
-                defaultValue=""
-                className={` ${styles.signUpInput} ${styles.signUpSelect}`}
-              >
-                <option value="" disabled>
-                  Selecione
-                </option>
+              <select id="genero" value={formData.genero} onChange={handleChange} className={`${styles.signUpInput} ${styles.signUpSelect}`}>
+                <option value="" disabled>Selecione</option>
                 <option value="masculino">Masculino</option>
                 <option value="feminino">Feminino</option>
                 <option value="outros">Outros</option>
@@ -91,88 +125,64 @@ export default function Cadastro() {
 
             <div className={styles.signUpInputGroup}>
               <label htmlFor="cpf">CPF</label>
-              <input id="cpf" type="text" placeholder="190.203.400-14" />
+              <input id="cpf" type="text" placeholder="190.203.400-14" value={formData.cpf} onChange={handleChange} />
             </div>
           </div>
 
+          {/* Email e Telefone */}
           <div className={styles.signUpRow}>
             <div className={styles.signUpInputGroup}>
               <label htmlFor="email">Email</label>
-              <input id="email" type="email" placeholder="email@gmail.com" />
+              <input id="email" type="email" placeholder="email@gmail.com" value={formData.email} onChange={handleChange} />
             </div>
 
             <div className={styles.signUpInputGroup}>
               <label htmlFor="telefone">Telefone</label>
-              <input id="telefone" type="text" placeholder="13 997311644" />
+              <input id="telefone" type="text" placeholder="13 997311644" value={formData.telefone} onChange={handleChange} />
             </div>
           </div>
 
+          {/* Senha */}
           <div className={styles.signUpInputGroup}>
             <label htmlFor="senha">Senha</label>
-            <div
-              style={{
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
+            <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
               <input
                 id="senha"
                 type={showPassword ? "text" : "password"}
                 placeholder="************"
                 className={styles.loginInput}
                 style={{ width: "100%" }}
+                value={formData.senha}
+                onChange={handleChange}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((v) => !v)}
-                style={{
-                  position: "absolute",
-                  right: 16,
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: 0,
-                  display: "flex",
-                  alignItems: "center",
-                  height: "100%",
-                }}
+                style={{ position: "absolute", right: 16, background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", height: "100%" }}
                 tabIndex={-1}
                 aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
               >
-                {showPassword ? (
-                  // Olho aberto
-                  <Icon icon="mdi:eye-outline" width={24} />
-                ) : (
-                  // Olho fechado
-                  <Icon icon="mdi:eye-off-outline" width={24} />
-                )}
+                {showPassword ? <Icon icon="mdi:eye-outline" width={24} /> : <Icon icon="mdi:eye-off-outline" width={24} />}
               </button>
             </div>
           </div>
-          <button type="submit" className={styles.signUpButton}>
-            Cadastrar
+
+          <button type="submit" className={styles.signUpButton} disabled={loading}>
+            {loading ? "Cadastrando..." : "Cadastrar"}
           </button>
+
           <div className={styles.signUpAccountLink}>
-            Já tem conta?
-            <a href="/Entrar">Entrar</a>
+            Já tem conta? <Link href="/Entrar">Entrar</Link>
           </div>
+
           <div className={styles.signUpDivider}>Ou</div>
           <div className={styles.signUpSocialButtons}>
             <button type="button" className={styles.signUpSocialBtn}>
-              <Image
-                src={LogoGoogle}
-                alt="Google"
-                className={styles.signUpSocialIcon}
-              />
+              <Image src={LogoGoogle} alt="Google" className={styles.signUpSocialIcon} />
               Continuar com o Google
             </button>
             <button type="button" className={styles.signUpSocialBtn}>
-              <Image
-                src={LogoMicrosoft}
-                alt="Microsoft"
-                className={styles.signUpSocialIcon}
-              />
+              <Image src={LogoMicrosoft} alt="Microsoft" className={styles.signUpSocialIcon} />
               Continuar com o Microsoft
             </button>
           </div>
