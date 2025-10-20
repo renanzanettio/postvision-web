@@ -11,15 +11,20 @@ import MonthlyComparisionChart from "../../components/MonthlyComparisionChart/Mo
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { da } from "react-day-picker/locale";
+import { useUser } from "../UserContext";
 
 export default function Profile() {
+
+  const usuario = useUser();
+
   const [selected, setSelected] = useState("Todos");
+
   const profileData = {
-    name: "Carlos",
-    sobrenome: "Silva",
-    cpf: "123.456.789-00",
-    genero: "Masculino",
-    dataNascimento: "01/03/2006",
+    name: usuario?.nome_usuario || "Informação não encontrada",
+    sobrenome: usuario?.sobrenome_usuario || "Informação não encontrada",
+    cpf: usuario?.cpf_usuario || "Informação não encontrada",
+    genero: usuario?.genero_usuario || "Informação não encontrada",
+    dataNascimento: usuario?.data_nascimento_usuario || "Informação não encontrada",
   };
 
   const securityData = {

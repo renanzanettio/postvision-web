@@ -4,6 +4,7 @@ import "../globals.css";
 import ClientLayout from "../components/ClientLayout";
 import Menu from "../components/Menu/Menu";
 import RightBoard from "../components/RightBoard/RightBoard";
+import { UserProvider } from "./UserContext"; // <-- import do Context pasra  puxar os dadosdo usuario
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -33,11 +34,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable}`}>
-      <ClientLayout>
-        <Menu />
-        {children}
-      </ClientLayout>
-    </div>
+    <UserProvider>
+      <div className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable}`}>
+        <ClientLayout>
+          <Menu />
+          {children}
+          <RightBoard /> {/* se quiser manter */}
+        </ClientLayout>
+      </div>
+    </UserProvider>
   );
 }

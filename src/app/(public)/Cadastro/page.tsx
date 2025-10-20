@@ -117,9 +117,9 @@ export default function Cadastro() {
               <label htmlFor="genero">Gênero</label>
               <select id="genero" value={formData.genero} onChange={handleChange} className={`${styles.signUpInput} ${styles.signUpSelect}`}>
                 <option value="" disabled>Selecione</option>
-                <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-                <option value="outros">Outros</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outros">Outros</option>
               </select>
             </div>
 
