@@ -39,7 +39,6 @@ export default function RootLayout({
         <ClientLayout>
           <Menu />
           {children}
-          <RightBoard /> {/* se quiser manter */}
         </ClientLayout>
       </div>
     </UserProvider>

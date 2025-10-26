@@ -45,6 +45,9 @@ export default function Menu() {
                     <Link href="/Profile" className={`${styles.link} ${pathname === '/Profile' ? styles.active : ''}`}> 
                     <Icon icon="iconamoon:profile-fill" className={styles.profileIcon}/>Profile
                     </Link>
+                    <Link href="/Camera" className={`${styles.link} ${pathname === '/Camera' ? styles.active : ''}`}> 
+                    <Icon icon="mdi:camera" className={styles.profileIcon}/>Camera
+                    </Link>
                 </div>
                 <button onClick={handleLogOut} className={styles.logoutContainer}><Icon icon="ri:logout-box-line" className={styles.logoutButton} /></button>
             </div>
