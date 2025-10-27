@@ -27,6 +27,12 @@
   transform: translateX(-5%);
 }
 
+.lineChart {
+
+  width: 450px !important;
+  height: 250px !important;
+}
+
 @media (max-width: 600px) {
   .graphContainer {
     width: 90% !important;

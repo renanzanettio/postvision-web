@@ -114,7 +114,7 @@
     width: 34px;
     height: 34px;
     position: relative;
-    z-index: 999;
+    z-index: 1100;
   }
 
   .menuIconContainer {
@@ -129,6 +129,7 @@
     background: transparent;
     align-items: center;
     justify-content: center;
+    z-index: 1100;
   }
 
   .link{ 
@@ -143,11 +144,12 @@
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 1rem;
+    z-index: 1200;
   }
 
   .menuContainerOpen {
     display: flex;
-    z-index: 1000;
+    z-index: 1200;
   }
   
 
@@ -159,6 +161,6 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0,0,0,0.2);
-    z-index: 999;
+    z-index: 1199;
   }
 }

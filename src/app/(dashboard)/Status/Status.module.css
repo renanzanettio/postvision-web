@@ -90,8 +90,8 @@
 
   .mainContainer {
     margin-left: 0;
-    width: calc(100% - 1rem);
-    padding-inline: 1rem;
+    width: 100%;
+    padding-inline: 0.2rem;
   }
 
   .statusContainer {

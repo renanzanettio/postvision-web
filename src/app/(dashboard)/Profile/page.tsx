@@ -68,7 +68,8 @@ export default function Profile() {
     sobrenome: usuario?.sobrenome_usuario || "Informação não encontrada",
     cpf: formatCpf(usuario?.cpf_usuario) || "Informação não encontrada",
     genero: usuario?.genero_usuario || "Informação não encontrada",
-    dataNascimento: formatDateToBr(usuario?.data_nascimento_usuario),
+    dataNascimento: usuario?.data_nascimento_usuario
+  ? formatDateToBr(new Date(new Date(usuario.data_nascimento_usuario).setDate(new Date(usuario.data_nascimento_usuario).getDate() + 1))) : "Informação não encontrada",
   };
 
   const securityData = {

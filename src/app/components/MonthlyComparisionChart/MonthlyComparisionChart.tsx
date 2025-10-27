@@ -27,7 +27,7 @@ export default function MonthlyComparisionChart() {
       <div className={styles.title}>Comparativo Mensal</div>
       <div className={styles.subtitle}>Agachamento</div>
       <div className={styles.chart}>
-        <ResponsiveContainer  width={450} height={250}>
+        <ResponsiveContainer className={styles.lineChart}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis dataKey="dia" />
