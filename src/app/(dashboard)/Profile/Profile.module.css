@@ -208,6 +208,41 @@
   display: flex;
 }
 
+.formEdit{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 95%;
+  gap: 10px;
+
+  & .dataRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    & .label{
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--highlight-black-700);
+    }
+  }
+
+  & input{
+    width: fit-content;
+    border: 2px solid var(--highlight-black-800);
+    border-radius: 10px;
+    padding-inline: 6px;
+  }
+}
+
+.btnRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 @media (max-width: 600px) {
   .mainContainer {
     margin-left: 0;

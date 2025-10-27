@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useUser } from "../../(dashboard)/UserContext";
 import Image from "next/image";
-import ProfileIcon from "@/public/images/carlos.png";
+import ProfileIcon from "@/public/images/profile.svg";
 import { use, useEffect, useState } from "react";
 
 export default function AppStatusRow() {

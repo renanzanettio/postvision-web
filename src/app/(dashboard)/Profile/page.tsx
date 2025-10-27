@@ -1,33 +1,28 @@
 "use client";
 import styles from "./Profile.module.css";
-import Menu from "../../components/Menu/Menu";
 import RightBoard from "../../components/RightBoard/RightBoard";
-import ProfileIcon from "@/public/images/carlos.png";
+import ProfileIcon from "@/public/images/profile.svg";
 import { useState } from "react";
-import FilterRow from "../../components/FilterRow/FilterRow";
-import WeeklyPerformanceChart from "../../components/WeeklyPerformanceChart/WeeklyPerformanceChart";
-import LastTrainingChart from "../../components/LastTrainingChart/LastTrainingChart";
-import MonthlyComparisionChart from "../../components/MonthlyComparisionChart/MonthlyComparisionChart";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
-import { da } from "react-day-picker/locale";
 import { useUser } from "../UserContext";
 
 export default function Profile() {
   const usuario = useUser();
 
-  const [selected, setSelected] = useState("Todos");
+  const [isEditingPersonal, setIsEditingPersonal] = useState(false);
+  const [isEditingSecurity, setIsEditingSecurity] = useState(false);
 
-  // FORMATA A DARA PARA O FORMATO BRASILEIRO
+  // FORMATA A DATA PARA O FORMATO BRASILEIRO E ADICIONA 1 DIA
   function formatDateToBr(dateInput: string | Date | undefined): string {
     if (!dateInput) return "Informação não encontrada";
-
     const date =
       typeof dateInput === "string" ? new Date(dateInput) : dateInput;
-
     if (isNaN(date.getTime())) return "Informação não encontrada";
-
-    return date.toLocaleDateString("pt-BR");
+    // Adiciona 1 dia
+    const nextDay = new Date(date);
+    nextDay.setDate(nextDay.getDate() + 1);
+    return nextDay.toLocaleDateString("pt-BR");
   }
 
   // FORMATA O CPF PARA O FORMATO XXX.XXX.XXX-XX
@@ -63,24 +58,84 @@ export default function Profile() {
     }
   }
 
-  const profileData = {
-    name: usuario?.nome_usuario || "Informação não encontrada",
-    sobrenome: usuario?.sobrenome_usuario || "Informação não encontrada",
-    cpf: formatCpf(usuario?.cpf_usuario) || "Informação não encontrada",
-    genero: usuario?.genero_usuario || "Informação não encontrada",
-    dataNascimento: usuario?.data_nascimento_usuario
-  ? formatDateToBr(new Date(new Date(usuario.data_nascimento_usuario).setDate(new Date(usuario.data_nascimento_usuario).getDate() + 1))) : "Informação não encontrada",
+  const [formData, setFormData] = useState({
+    nome_usuario: usuario?.nome_usuario || "",
+    sobrenome_usuario: usuario?.sobrenome_usuario || "",
+    cpf_usuario: formatCpf(usuario?.cpf_usuario) || "Informação não encontrada",
+    genero_usuario: usuario?.genero_usuario || "",
+    data_nascimento_usuario: formatDateToBr(usuario?.data_nascimento_usuario),
+    telefone_usuario:
+      formatPhone(usuario?.telefone_usuario) || "Informação não encontrada",
+    email_usuario: usuario?.email_usuario || "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const securityData = {
-    telefone: formatPhone(usuario?.telefone_usuario) || "Informação não encontrada",
-    email: usuario?.email_usuario || "Informação não encontrada",
+  const handleEdit = (section: "personal" | "security") => {
+    if (section === "personal") setIsEditingPersonal(true);
+    else setIsEditingSecurity(true);
+  };
+
+  const handleCancel = (section: "personal" | "security") => {
+    if (section === "personal") setIsEditingPersonal(false);
+    else setIsEditingSecurity(false);
+
+    setFormData({
+      nome_usuario: usuario?.nome_usuario || "",
+      sobrenome_usuario: usuario?.sobrenome_usuario || "",
+      cpf_usuario: usuario?.cpf_usuario || "",
+      genero_usuario: usuario?.genero_usuario || "",
+      data_nascimento_usuario: usuario?.data_nascimento_usuario || "",
+      telefone_usuario: usuario?.telefone_usuario || "",
+      email_usuario: usuario?.email_usuario || "",
+    });
+  };
+
+  const handleSave = async (section: "personal" | "security") => {
+    try {
+      const payload = {
+        type: section,
+        data:
+          section === "personal"
+            ? {
+                nome_usuario: formData.nome_usuario,
+                sobrenome_usuario: formData.sobrenome_usuario,
+                cpf_usuario: formData.cpf_usuario,
+                genero_usuario: formData.genero_usuario,
+                data_nascimento_usuario: formData.data_nascimento_usuario,
+              }
+            : {
+                telefone_usuario: formData.telefone_usuario,
+                email_usuario: formData.email_usuario,
+              },
+      };
+
+      const response = await fetch(`/api/user`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error || "Erro ao atualizar");
+
+      alert("Dados atualizados com sucesso!");
+      if (section === "personal") setIsEditingPersonal(false);
+      else setIsEditingSecurity(false);
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao salvar alterações.");
+    }
   };
 
   return (
     <div className={styles.reverseContainer}>
       <div className={styles.mainContainer}>
         <div className={styles.profileContainer}>
+          {/* Cabeçalho */}
           <div className={styles.profileInfoTop}>
             <div className={styles.profileDiv}>
               <Image
@@ -90,59 +145,163 @@ export default function Profile() {
               />
             </div>
             <div className={styles.textDivision}>
-              <span className={styles.name}>{usuario?.nome_usuario} {usuario?.sobrenome_usuario}</span>
+              <span className={styles.name}>
+                {usuario?.nome_usuario} {usuario?.sobrenome_usuario}
+              </span>
               <span className={styles.email}>{usuario?.email_usuario}</span>
             </div>
           </div>
+
+          {/* Informações Pessoais */}
           <div className={styles.contentContainer}>
             <div className={styles.topRow}>
               <div className={styles.title}>Informações Pessoais</div>
-              <Icon className={styles.edit} icon="mynaui:edit-one" />
+              {!isEditingPersonal && (
+                <Icon
+                  className={styles.edit}
+                  icon="mynaui:edit-one"
+                  onClick={() => handleEdit("personal")}
+                />
+              )}
             </div>
-            <div className={styles.personalDataContainer}>
-              {Object.entries(profileData).map(([key, value]) => (
-                <div key={key} className={styles.dataRow}>
-                  <div className={styles.label}>
-                    {key.charAt(0).toUpperCase() +
-                      key
-                        .slice(1)
-                        .replace(/([A-Z])/g, " $1")
-                        .replace("sobrenome", "Sobrenome")
-                        .replace("cpf", "CPF")
-                        .replace("genero", "Gênero")
-                        .replace("dataNascimento", "Data de Nascimento") +
-                      ":"}
-                  </div>
-                  <div className={styles.value}>{value}</div>
+
+            {!isEditingPersonal ? (
+              <div className={styles.personalDataContainer}>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Nome:</div>
+                  <div className={styles.value}>{usuario?.nome_usuario}</div>
                 </div>
-              ))}
-            </div>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Sobrenome:</div>
+                  <div className={styles.value}>
+                    {usuario?.sobrenome_usuario}
+                  </div>
+                </div>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>CPF:</div>
+                  <div className={styles.value}>{formData.cpf_usuario}</div>
+                </div>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Gênero:</div>
+                  <div className={styles.value}>{usuario?.genero_usuario}</div>
+                </div>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Data de Nascimento:</div>
+                  <div className={styles.value}>
+                    {formData.data_nascimento_usuario?.split("T")[0]}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.formEdit}>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Nome:</div>
+                  <input
+                    name="nome_usuario"
+                    value={formData.nome_usuario}
+                    onChange={handleChange}
+                    placeholder="Nome"
+                  />
+                </div>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Sobrenome:</div>
+                  <input
+                    name="sobrenome_usuario"
+                    value={formData.sobrenome_usuario}
+                    onChange={handleChange}
+                    placeholder="Sobrenome"
+                  />
+                </div>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>CPF:</div>
+                  <input
+                    name="cpf_usuario"
+                    value={formData.cpf_usuario}
+                    onChange={handleChange}
+                    placeholder="CPF"
+                  />
+                </div>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Gênero:</div>
+                  <input
+                    name="genero_usuario"
+                    value={formData.genero_usuario}
+                    onChange={handleChange}
+                    placeholder="Gênero"
+                  />
+                </div>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Data de Nascimento:</div>
+                  <input
+                    type="date"
+                    name="data_nascimento_usuario"
+                    value={
+                      formData.data_nascimento_usuario?.split("T")[0] || ""
+                    }
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className={styles.btnRow}>
+                  <button onClick={() => handleSave("personal")}>Salvar</button>
+                  <button onClick={() => handleCancel("personal")}>
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
+
+          {/* Segurança */}
           <div className={styles.contentContainer}>
             <div className={styles.topRow}>
               <div className={styles.title}>Segurança</div>
-              <Icon className={styles.edit} icon="mynaui:edit-one" />
+              {!isEditingSecurity && (
+                <Icon
+                  className={styles.edit}
+                  icon="mynaui:edit-one"
+                  onClick={() => handleEdit("security")}
+                />
+              )}
             </div>
-            <div className={styles.personalDataContainer}>
-              {Object.entries(securityData).map(([key, value]) => (
-                <div key={key} className={styles.dataRow}>
-                  <div className={styles.label}>
-                    {key.charAt(0).toUpperCase() +
-                      key
-                        .slice(1)
-                        .replace(/([A-Z])/g, " $1")
-                        .replace("telefone", "Telefone")
-                        .replace("email", "Email") +
-                      ":"}
+
+            {!isEditingSecurity ? (
+              <div className={styles.personalDataContainer}>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Telefone:</div>
+                  <div className={styles.value}>
+                    {formData.telefone_usuario}
                   </div>
-                  <div className={styles.value}>{value}</div>
                 </div>
-              ))}
-            </div>
+                <div className={styles.dataRow}>
+                  <div className={styles.label}>Email:</div>
+                  <div className={styles.value}>{formData.email_usuario}</div>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.formEdit}>
+                <input
+                  name="telefone_usuario"
+                  value={formData.telefone_usuario}
+                  onChange={handleChange}
+                  placeholder="Telefone"
+                />
+                <input
+                  name="email_usuario"
+                  value={formData.email_usuario}
+                  onChange={handleChange}
+                  placeholder="Email"
+                />
+                <div className={styles.btnRow}>
+                  <button onClick={() => handleSave("security")}>Salvar</button>
+                  <button onClick={() => handleCancel("security")}>
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
-
       <RightBoard />
     </div>
   );
