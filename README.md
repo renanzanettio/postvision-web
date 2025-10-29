@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PostVision
 
-## Getting Started
+Sistema de Correção de Postura com Análise de Agachamento via Visão Computacional
 
-First, run the development server:
+O **PostVision** é um aplicativo desenvolvido em **Next.js** que utiliza **visão computacional** para analisar a postura do usuário durante o exercício de **agachamento**, auxiliando na correção de movimentos incorretos e promovendo treinos mais seguros e eficientes.
+
+---
+
+## Como executar o projeto
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/renanzanettio/web-postvision.git
+
+```
+
+### 2. Inicie o servidor de banco de dados
+
+- Abra o **XAMPP** e ative o módulo **MySQL**.
+- Inicie o banco de dados pelo **HeidiSQL** ou **MySQL Workbench**.
+
+### 3. Importe o banco de dados
+
+Na raiz do projeto existe o arquivo `postvision.sql`.
+
+Importe-o para o seu servidor MySQL para criar as tabelas e dados necessários.
+
+Dica: No HeidiSQL, clique com o botão direito sobre o banco de dados e selecione **Executar SQL**, depois carregue o arquivo `postvision.sql`.
+
+---
+
+### 4. Configure o arquivo `.env`
+
+Renomeie o arquivo:
+
+```bash
+.env-RENAME → .env
+
+```
+
+Dentro dele há a variável de conexão com o banco:
+
+```
+DATABASE_URL="mysql://root@localhost:3306/postvision"
+
+```
+
+Se o seu MySQL tiver senha ou porta diferente, altere conforme necessário:
+
+- `root` → nome do seu usuário MySQL
+- `localhost` → endereço do servidor
+- `3306` → porta do MySQL
+- `postvision` → nome do banco criado
+
+Exemplo:
+
+```
+DATABASE_URL="mysql://usuario:minhasenha@localhost:3307/postvision"
+
+```
+
+---
+
+### 5. Instale as dependências
+
+```bash
+npm install
+
+```
+
+---
+
+### 6. Execute o projeto
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O servidor será iniciado em:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Tecnologias Utilizadas
 
-To learn more about Next.js, take a look at the following resources:
+| Tecnologia | Descrição |
+| --- | --- |
+| **Next.js** | Framework React moderno, com renderização híbrida (SSR e SSG). |
+| **TypeScript** | Tipagem estática e segurança no desenvolvimento. |
+| **MySQL + Prisma ORM** | Banco de dados relacional com ORM moderno e intuitivo. |
+| **Node.js** | Ambiente de execução JavaScript para o backend. |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Principais Bibliotecas
 
-## Deploy on Vercel
+### Prisma
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+ORM que facilita a integração com o banco de dados MySQL, permitindo gerar o cliente automaticamente e realizar migrações com segurança.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Usado para autenticação, cadastro e gerenciamento de usuários.
+
+### bcryptjs
+
+Biblioteca para criptografia de senhas, garantindo segurança nos dados armazenados.
+
+### jsonwebtoken (JWT)
+
+Usado para autenticação de usuários, gerando tokens seguros para login e controle de sessão.
+
+### Recharts
+
+Biblioteca de gráficos interativos em React, utilizada para exibir estatísticas dos treinos, comparativos e desempenhos do usuário.
+
+### MediaPipe
+
+Usado para análise de postura e detecção de landmarks corporais, possibilitando a avaliação da execução dos agachamentos em tempo real.
+
+### Iconify
+
+Biblioteca de ícones universais, integrada ao design do sistema para compor uma interface moderna e intuitiva.
