@@ -18,13 +18,20 @@ export async function POST(req: Request) {
       birthDate,
     } = await req.json();
 
-    const usuarioExistente = await User.findOne({ email });
+    const emailExists = await User.findOne({ email });
+    const phoneExists = await User.findOne({ phone });
 
-    if (usuarioExistente) {
+    if (emailExists) {
       return NextResponse.json({ error: "E-mail já cadastrado!" }, { status: 400 });
     }
 
+    if (phoneExists) {
+      return NextResponse.json({ error: "Telefone já cadastrado!" }, { status: 400 });
+    }
+
     const hashPassword = await bcrypt.hash(password, 10);
+    const cleanCPF = cpf.replace(/\D/g, "");
+    const cleanphone = phone.replace(/\D/g, "");
 
     const novoUsuario = await User.create({
       firstName,
@@ -32,8 +39,8 @@ export async function POST(req: Request) {
       email,
       password : hashPassword,
       gender,
-      cpf,
-      phone,
+      cpf: cleanCPF,
+      phone: cleanphone,
       birthDate: birthDate,
     });
 

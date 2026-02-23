@@ -72,16 +72,18 @@ export async function PUT(req: Request) {
     let updateData: any = {};
 
     if (type === "personal") {
+      const cleanCPF = data.cpf_usuario.replace(/\D/g, "");
       updateData = {
         firstName: data.nome_usuario,
         lastName: data.sobrenome_usuario,
-        cpf: data.cpf_usuario,
+        cpf: cleanCPF,
         gender: data.genero_usuario,
         birthDate: data.data_nascimento_usuario,
       };
     } else if (type === "security") {
+      const cleanphone = data.telefone_usuario.replace(/\D/g, "");
       updateData = {
-        phone: data.telefone_usuario,
+        phone: cleanphone,
         email: data.email_usuario,
       };
     } else {

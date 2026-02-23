@@ -6,6 +6,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useUser } from "../UserContext";
+import { useRouter } from 'next/navigation';
 
 export default function Profile() {
   const usuario = useUser();
@@ -63,7 +64,7 @@ export default function Profile() {
     sobrenome_usuario: usuario?.sobrenome_usuario || "",
     cpf_usuario: formatCpf(usuario?.cpf_usuario) || "Informação não encontrada",
     genero_usuario: usuario?.genero_usuario || "",
-    data_nascimento_usuario: formatDateToBr(usuario?.data_nascimento_usuario),
+    data_nascimento_usuario: usuario?.data_nascimento_usuario,
     telefone_usuario:
       formatPhone(usuario?.telefone_usuario) || "Informação não encontrada",
     email_usuario: usuario?.email_usuario || "",
@@ -100,16 +101,16 @@ export default function Profile() {
         data:
           section === "personal"
             ? {
-                nome_usuario: formData.nome_usuario,
-                sobrenome_usuario: formData.sobrenome_usuario,
-                cpf_usuario: formData.cpf_usuario,
-                genero_usuario: formData.genero_usuario,
-                data_nascimento_usuario: formData.data_nascimento_usuario,
-              }
+              nome_usuario: formData.nome_usuario,
+              sobrenome_usuario: formData.sobrenome_usuario,
+              cpf_usuario: formData.cpf_usuario,
+              genero_usuario: formData.genero_usuario,
+              data_nascimento_usuario: formData.data_nascimento_usuario,
+            }
             : {
-                telefone_usuario: formData.telefone_usuario,
-                email_usuario: formData.email_usuario,
-              },
+              telefone_usuario: formData.telefone_usuario,
+              email_usuario: formData.email_usuario,
+            },
       };
 
       const response = await fetch(`/api/user`, {
@@ -123,8 +124,15 @@ export default function Profile() {
       if (!response.ok) throw new Error(data.error || "Erro ao atualizar");
 
       alert("Dados atualizados com sucesso!");
+
+
       if (section === "personal") setIsEditingPersonal(false);
       else setIsEditingSecurity(false);
+
+      // Atualiza o estado do usuário no frontend
+      localStorage.setItem("usuario", JSON.stringify(data.usuario));
+      window.location.reload(); // recarrega a página para refletir as mudanças
+
     } catch (error) {
       console.error(error);
       alert("Erro ao salvar alterações.");
@@ -188,7 +196,7 @@ export default function Profile() {
                 <div className={styles.dataRow}>
                   <div className={styles.label}>Data de Nascimento:</div>
                   <div className={styles.value}>
-                    {formData.data_nascimento_usuario?.split("T")[0]}
+                    {formatDateToBr(formData.data_nascimento_usuario)}
                   </div>
                 </div>
               </div>
