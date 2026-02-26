@@ -30,7 +30,7 @@ export default function WeeklyPerformanceChart() {
             <div className={styles.title}>Desempenho Semanal</div>
             <div className={styles.subtitle}>Agachamento</div>
             <div className={styles.chart}>
-                <ResponsiveContainer width={450} height={250}>
+                <ResponsiveContainer className={styles.chartSize}>
                     <BarChart data={data} barCategoryGap="20%">
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
                     <XAxis dataKey="name" />

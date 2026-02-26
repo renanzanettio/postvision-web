@@ -23,7 +23,7 @@ export default function LastTrainingCharts() {
       <div className={styles.title}>Ultimo Treino</div>
       <div className={styles.subtitle}>Agachamento</div>
       <div className={styles.chart}>
-        <ResponsiveContainer  width={400} height={200}>
+        <ResponsiveContainer className={styles.chartSize}>
           <PieChart>
             <Pie
               data={data}
@@ -44,7 +44,7 @@ export default function LastTrainingCharts() {
               align="right"
               iconType="circle"
               formatter={(value) => (
-                <span style={{ color: "#1c1c1c", fontSize: 16 }}>{value}</span>
+                <span style={{ color: "#1c1c1c", fontSize: 14 }}>{value}</span>
               )}
             />
           </PieChart>
