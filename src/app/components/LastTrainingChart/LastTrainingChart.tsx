@@ -1,5 +1,6 @@
 "use client";
 import styles from "./LastTrainingChart.module.css";
+import { useSession } from "@/app/(dashboard)/SessionContext";
 
 import {
   PieChart,
@@ -10,14 +11,24 @@ import {
   Legend,
 } from "recharts";
 
-const data = [
-  { name: "Corretos", value: 75 },
-  { name: "Incorretos", value: 25 },
-];
-
 const COLORS = ["#1B0066", "#E3D93F"];
 
 export default function LastTrainingCharts() {
+  const { stats } = useSession();
+
+  // Usa o último treino da semana (entrada mais recente)
+  const lastSession = stats?.weekly[stats.weekly.length - 1];
+
+  const corretos = lastSession?.corretos ?? 0;
+  const total = lastSession?.total ?? 0;
+  const incorretos = total - corretos;
+  const percentual = total > 0 ? (corretos / total) * 100 : 0;
+
+  const chartData = [
+    { name: "Corretos", value: corretos },
+    { name: "Incorretos", value: incorretos },
+  ];
+
   return (
     <div className={styles.graphContainer}>
       <div className={styles.title}>Ultimo Treino</div>
@@ -26,14 +37,14 @@ export default function LastTrainingCharts() {
         <ResponsiveContainer className={styles.chartSize}>
           <PieChart>
             <Pie
-              data={data}
+              data={chartData}
               innerRadius={50}
               outerRadius={90}
               dataKey="value"
               startAngle={90}
               endAngle={-270}
             >
-              {data.map((entry, index) => (
+              {chartData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index]} />
               ))}
             </Pie>
@@ -50,7 +61,7 @@ export default function LastTrainingCharts() {
           </PieChart>
         </ResponsiveContainer>
         <div className={styles.centerText}>
-          <span>{data[0].value.toFixed(0)}%</span>
+          <span>{percentual.toFixed(0)}%</span>
         </div>
       </div>
     </div>

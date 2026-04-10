@@ -79,3 +79,13 @@ export async function apiUpdateUser(id: string, data: Record<string, string>) {
   });
   return res;
 }
+
+
+/** GET /user/:id — obtém dados de sessão de treino do usuário */
+export async function apiGetSessionStatsByUserId(id: string) {
+  const res = await fetch(`${API_URL}/session/stats/${id}`, {
+    method: 'GET',
+    headers: authHeaders(),
+  });
+  return res;
+}
