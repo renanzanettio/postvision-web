@@ -89,3 +89,39 @@ export async function apiGetSessionStatsByUserId(id: string) {
   });
   return res;
 }
+
+// Endpoints de notificações
+
+export async function apiCreateNotification(data: Record<string, unknown>) {
+  const res = await fetch(`${API_URL}/notifications/`, {
+    method: 'POST',
+    headers: authHeaders(),
+    body: JSON.stringify(data),
+  });
+  return res;
+}
+
+export async function apiGetAllNotifications(userId: string) {
+  const res = await fetch(`${API_URL}/notifications/${userId}`, {
+    method: 'GET',
+    headers: authHeaders(),
+  });
+  return res;
+}
+
+export async function apiMarkNotificationAsRead(notificationId: string) {
+  const res = await fetch(`${API_URL}/notifications/${notificationId}/read`, {
+    method: 'PUT',
+    headers: authHeaders(),
+  });
+  return res;
+}
+
+export async function apiDeleteNotification(notificationId: string) {
+  const res = await fetch(`${API_URL}/notifications/${notificationId}`, {
+    method: 'DELETE',
+    headers: authHeaders(),
+  });
+  return res;
+}
+

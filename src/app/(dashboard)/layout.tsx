@@ -5,6 +5,7 @@ import ClientLayout from "../components/ClientLayout";
 import Menu from "../components/Menu/Menu";
 import { UserProvider } from "./UserContext";
 import { SessionProvider } from "./SessionContext";
+import { NotificationProvider } from "./NotificationContext";
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -36,12 +37,14 @@ export default function RootLayout({
   return (
     <UserProvider>
       <SessionProvider>
-        <div className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable}`}>
-          <ClientLayout>
-            <Menu />
-            {children}
-          </ClientLayout>
-        </div>
+        <NotificationProvider>
+          <div className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable}`}>
+            <ClientLayout>
+              <Menu />
+              {children}
+            </ClientLayout>
+          </div>
+        </NotificationProvider>
       </SessionProvider>
     </UserProvider>
   );

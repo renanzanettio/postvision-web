@@ -18,11 +18,25 @@ const DAYS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
 export default function WeeklyPerformanceChart() {
     const { stats } = useSession();
 
-    const chartData = stats?.weekly.map((item) => ({
-        name: DAYS[new Date(item.date).getDay()],
-        corretos: item.corretos,
-        total: item.total,
-    })) ?? [];
+    const todayWeek = new Date().getDay();
+    const lastDayWeek = (todayWeek - 1 + 7) % 7;
+
+    // monta a ordem dinâmica (últimos 7 dias terminando em ontem)
+    const orderedDays = Array.from({ length: 7 }, (_, i) => {
+        return (lastDayWeek - 6 + i + 7) % 7;
+    });
+
+    const chartData = orderedDays.map((dayIndex) => {
+        const found = stats?.weekly.find(
+            (item) => new Date(item.date).getDay() === dayIndex
+        );
+
+        return {
+            name: DAYS[dayIndex],
+            corretos: found ? found.corretos : 0,
+            total: found ? found.total : 0,
+        };
+    });
 
     return (
         <div className={styles.graphContainer}>
