@@ -23,7 +23,7 @@
         text-align: start;
 
         & .date {
-            font-size: 1.2rem;
+            font-size: 0.875rem;
             color: var(--highlight-black-500);
         }
 
