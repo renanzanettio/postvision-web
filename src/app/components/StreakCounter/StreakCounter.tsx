@@ -1,3 +1,4 @@
+"use client";
 import styles from "./StreakCounter.module.css";
 import { Icon } from "@iconify/react";
 import { useSession } from "@/app/(dashboard)/SessionContext";
