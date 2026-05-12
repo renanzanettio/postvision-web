@@ -76,7 +76,7 @@ export default function Profile() {
       if (!usuario?.id_usuario) throw new Error("Usuário não identificado");
 
       // Monta o payload no formato que a API externa espera (campos em inglês)
-      const payload =
+      const payload: Record<string, string> =
         section === "personal"
           ? {
               firstName: formData.nome_usuario,
