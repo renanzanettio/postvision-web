@@ -1,21 +1,20 @@
-// Helper centralizado para chamadas à postvision-api externa
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const API_URL = '/api';
 
-/** Retorna o token armazenado no localStorage (só funciona no browser) */
+
 export function getToken(): string | null {
   if (typeof window === 'undefined') return null;
   return localStorage.getItem('token');
 }
 
-/** Salva o token no localStorage e num cookie acessível ao middleware */
+
 export function saveToken(token: string) {
   localStorage.setItem('token', token);
   // Cookie lido pelo middleware Next.js para proteger rotas
   document.cookie = `token=${token}; path=/; SameSite=Strict; max-age=${60 * 60 * 24 * 2}`;
 }
 
-/** Remove o token do localStorage e expira o cookie */
+
 export function clearToken() {
   localStorage.removeItem('token');
   localStorage.removeItem('usuario');
