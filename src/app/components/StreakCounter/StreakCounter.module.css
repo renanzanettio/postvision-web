@@ -60,3 +60,24 @@
     font-size: 1rem;
     color: var(--highlight-black-500);
 }
+
+@media (max-width: 380px) {
+    .streakContainer {
+        gap: 0.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .streakIcon {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .streakTexts {
+        width: auto;
+        min-width: 0;
+    }
+
+    .streakTitle {
+        font-size: 1.4rem;
+    }
+}

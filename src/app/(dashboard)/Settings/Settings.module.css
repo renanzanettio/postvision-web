@@ -107,3 +107,57 @@
 
   }
 }
+
+@media (max-width: 900px) {
+  .mainContainer {
+    margin-left: 0;
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .reverseContainer {
+    flex-direction: column-reverse;
+    height: fit-content;
+    min-height: 100vh;
+    padding-bottom: 2rem;
+  }
+
+  .mainContainer {
+    margin-left: 0;
+    width: 100%;
+    padding: 16px;
+    overflow-y: visible;
+  }
+
+  .settingsContainer {
+    width: 100%;
+    padding: 0;
+    gap: 1.6rem;
+  }
+
+  .settingsContainer .title {
+    font-size: 1.25rem;
+  }
+
+  .settingsContainer .section .title {
+    font-size: 1.05rem;
+  }
+
+  .optionContainer {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .optionContainer .optionText {
+    font-size: 0.9rem;
+  }
+
+  .switch {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px !important;
+  }
+}

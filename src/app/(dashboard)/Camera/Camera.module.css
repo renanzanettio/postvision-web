@@ -106,3 +106,37 @@
 	}
 }
 
+@media (max-width: 900px) {
+	.mainContainer {
+		margin-left: 0;
+		width: 100%;
+		padding: 16px;
+	}
+}
+
+@media (max-width: 600px) {
+	.reverseContainer {
+		flex-direction: column-reverse;
+		height: fit-content;
+		min-height: 100vh;
+		padding-bottom: 2rem;
+	}
+
+	.mainContainer {
+		margin-left: 0;
+		width: 100%;
+		padding: 16px;
+		align-items: center;
+		overflow-y: visible;
+	}
+
+	.card {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.canvas {
+		max-width: 100%;
+	}
+}
+

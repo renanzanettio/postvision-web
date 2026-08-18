@@ -243,11 +243,28 @@
   gap: 10px;
 }
 
+@media (max-width: 900px) {
+  .mainContainer {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .reverseContainer {
+    flex-direction: column-reverse;
+    height: fit-content;
+  }
+}
+
 @media (max-width: 600px) {
   .mainContainer {
     margin-left: 0;
     width: calc(100% - 1rem);
     padding-inline: 1rem;
+  }
+
+  .profileContainer {
+    width: 100%;
+    padding: 16px;
   }
 
   .statusContainer {
