@@ -1,4 +1,9 @@
 
+.notificationWrapper {
+    position: relative;
+    display: flex;
+}
+
 .notificationContainer {
     display: flex;
     flex-direction: row;
@@ -46,5 +51,22 @@
         &:last-child {
             border-bottom: none;
         }
+    }
+}
+
+@media (max-width: 600px) {
+    .notificationIcon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .notificationDropdown {
+        position: fixed;
+        top: 4.7rem;
+        left: 5%;
+        right: 5%;
+        width: auto;
+        max-width: 320px;
+        margin: 0 auto;
     }
 }

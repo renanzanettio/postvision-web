@@ -139,17 +139,27 @@
   }
 
   .menuContainer {
-    display: none;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 240px;
+    max-width: 78vw;
     background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border: none;
+    border-radius: 0 20px 20px 0;
     padding: 1rem;
+    box-shadow: 6px 0 24px rgba(0, 0, 0, 0.18);
     z-index: 1200;
+    transform: translateX(-100%);
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
   }
 
   .menuContainerOpen {
-    display: flex;
-    z-index: 1200;
+    transform: translateX(0);
+    pointer-events: auto;
   }
   
 
@@ -160,7 +170,17 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.35);
     z-index: 1199;
+    animation: menuOverlayFadeIn 0.3s ease;
+  }
+
+  @keyframes menuOverlayFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }
