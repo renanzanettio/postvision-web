@@ -57,8 +57,8 @@ export default function WeeklyPerformanceChart() {
                                 <span style={{ color: '#1c1c1c', fontSize: 16 }}>{value}</span>
                             )}
                         />
-                        <Bar dataKey="corretos" name="Corretos" fill="#1B0066" radius={[0, 0, 0, 0]} />
-                        <Bar dataKey="total" name="Total" fill="#E3D93F" radius={[0, 0, 0, 0]} />
+                        <Bar dataKey="corretos" name="Corretos" fill="#1B0066" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="total" name="Total" fill="#E3D93F" radius={[4, 4, 0, 0]} />
                     </BarChart>
                 </ResponsiveContainer>
             </div>

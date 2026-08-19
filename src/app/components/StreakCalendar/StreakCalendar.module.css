@@ -1,8 +1,8 @@
 
 .calendarBoard {
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   background: var(--white);
-  box-shadow: 0 2px 16px 0 rgba(60,32,145,0.08);
+  box-shadow: var(--shadow-md);
   width: 100%;
   margin: 0 auto;
 }
@@ -72,4 +72,36 @@
 .outsideDay {
   font-weight: 400;
   opacity: 0.5 !important;
+}
+
+.calendarLegend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 0 1rem 1rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--highlight-black-700);
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.legendDotStreak {
+  background: var(--secundary-purple-500);
+}
+
+.legendDotToday {
+  background: var(--white);
+  border: 2px dashed var(--highlight-yellow-500);
 }

@@ -19,6 +19,12 @@
   --highlight-black-800: #979797;
   --white: #ffffff;
 
+  /* Design tokens — mantém consistência de cantos e elevação no site inteiro */
+  --radius-sm: 8px;   /* botões, pills, pequenos elementos */
+  --radius-md: 10px;  /* cards de conteúdo (dashboard, about) */
+  --radius-lg: 18px;  /* blocos grandes / destaque (calendário, hero) */
+  --shadow-sm: 0px 2px 8px rgba(27, 0, 102, 0.06);
+  --shadow-md: 0px 4px 20px rgba(27, 0, 102, 0.10);
 }
 
 
