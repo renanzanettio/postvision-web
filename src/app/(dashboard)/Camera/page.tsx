@@ -290,7 +290,9 @@ export default function Camera() {
           />
         </div>
       </div>
-      <RightBoard />
+      <div className={styles.rightBoardWrapper}>
+        <RightBoard />
+      </div>
     </div>
   );
 }

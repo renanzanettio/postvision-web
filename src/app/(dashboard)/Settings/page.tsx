@@ -81,7 +81,9 @@ export default function Settings() {
           </div>
         </div>
       </div>
-      <RightBoard />
+      <div className={styles.rightBoardWrapper}>
+        <RightBoard />
+      </div>
     </div>
   );
 }

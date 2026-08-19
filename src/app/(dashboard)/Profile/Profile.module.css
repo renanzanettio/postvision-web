@@ -247,11 +247,19 @@
   .mainContainer {
     margin-left: 0;
     width: 100%;
+    height: auto;
+    padding-top: 5rem;
+    overflow-y: visible;
   }
 
   .reverseContainer {
     flex-direction: column-reverse;
-    height: fit-content;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .rightBoardWrapper {
+    display: none;
   }
 }
 

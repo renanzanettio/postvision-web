@@ -113,6 +113,11 @@
     margin-left: 0;
     width: 100%;
     padding: 16px;
+    padding-top: 5rem;
+  }
+
+  .rightBoardWrapper {
+    display: none;
   }
 }
 
@@ -128,6 +133,7 @@
     margin-left: 0;
     width: 100%;
     padding: 16px;
+    padding-top: 5rem;
     overflow-y: visible;
   }
 

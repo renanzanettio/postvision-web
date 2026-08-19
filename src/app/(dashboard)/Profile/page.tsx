@@ -242,7 +242,9 @@ export default function Profile() {
           </div>
         </div>
       </div>
-      <RightBoard />
+      <div className={styles.rightBoardWrapper}>
+        <RightBoard />
+      </div>
     </div>
   );
 }
