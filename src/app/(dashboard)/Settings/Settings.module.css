@@ -113,11 +113,6 @@
     margin-left: 0;
     width: 100%;
     padding: 16px;
-    padding-top: 5rem;
-  }
-
-  .rightBoardWrapper {
-    display: none;
   }
 }
 
@@ -126,6 +121,7 @@
     flex-direction: column-reverse;
     height: fit-content;
     min-height: 100vh;
+    justify-content: flex-end;
     padding-bottom: 2rem;
   }
 
@@ -133,7 +129,6 @@
     margin-left: 0;
     width: 100%;
     padding: 16px;
-    padding-top: 5rem;
     overflow-y: visible;
   }
 

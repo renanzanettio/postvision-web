@@ -81,9 +81,7 @@ export default function Settings() {
           </div>
         </div>
       </div>
-      <div className={styles.rightBoardWrapper}>
-        <RightBoard />
-      </div>
+      <RightBoard hideStatsOnMobile />
     </div>
   );
 }

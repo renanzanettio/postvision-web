@@ -16,7 +16,7 @@
     gap: 10px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 2px 8px #00000010;
+    box-shadow: var(--shadow-sm);
 
     & .title{
         font-size: 0.9rem;
@@ -40,7 +40,7 @@
     height: 100px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 2px 8px #00000010;
+    box-shadow: var(--shadow-sm);
 
     & .sessionAverageContainer {
         display: flex;
