@@ -13,8 +13,8 @@
     justify-content: center;
     width: 35%;
     height: 100px;
-    gap: 10px;
-    background-color: #fff;
+    gap: 6px;
+    background-color: var(--white);
     border-radius: 10px;
     box-shadow: var(--shadow-sm);
 
@@ -29,6 +29,13 @@
         font-weight: 400;
         color: var(--highlight-black-800);
     }
+
+    & .emptyHint {
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: var(--highlight-black-800);
+        text-align: center;
+    }
 }
 
 .sessionAverage {
@@ -38,7 +45,7 @@
     justify-content: center;
     width: 62%;
     height: 100px;
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 10px;
     box-shadow: var(--shadow-sm);
 

@@ -80,9 +80,18 @@ export async function apiUpdateUser(id: string, data: Record<string, string>) {
 }
 
 
-/** GET /user/:id — obtém dados de sessão de treino do usuário */
+/** GET /session/:userId — obtém sessão de treino do usuário */
 export async function apiGetSessionStatsByUserId(id: string) {
   const res = await fetch(`${API_URL}/session/stats/${id}`, {
+    method: 'GET',
+    headers: authHeaders(),
+  });
+  return res;
+}
+
+/** GET /session/:userId — lista todas as sessões de treino registradas do usuário */
+export async function apiGetSessionsByUserId(id: string) {
+  const res = await fetch(`${API_URL}/session/${id}`, {
     method: 'GET',
     headers: authHeaders(),
   });

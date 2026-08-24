@@ -14,7 +14,7 @@
   & .titleMenu {
     font-size: 1.7rem;
     font-weight: bold;
-    color: var(--secundary-purple-500);
+    color: var(--brand-accent);
     margin-bottom: 1rem;
   }
 
@@ -76,7 +76,7 @@
     width: 1.7rem;
     height: 1.7rem;
     bottom: 1.5rem;
-    color: #000;
+    color: var(--highlight-black-500);
     transition: 200ms ease-in;
 
 
@@ -110,7 +110,7 @@
 
   .menuIcon {
     display: block;
-    color: var(--secundary-purple-500);
+    color: var(--brand-accent);
     width: 34px;
     height: 34px;
     position: relative;
@@ -125,7 +125,7 @@
     width: 34px !important;
     height: 34px !important;
     cursor: pointer;
-    color: var(--secundary-purple-500);
+    color: var(--brand-accent);
     background: transparent;
     align-items: center;
     justify-content: center;
@@ -146,7 +146,7 @@
     height: 100%;
     width: 240px;
     max-width: 78vw;
-    background: #fff;
+    background: var(--white);
     border: none;
     border-radius: 0 20px 20px 0;
     padding: 1rem;

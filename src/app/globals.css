@@ -25,6 +25,25 @@
   --radius-lg: 18px;  /* blocos grandes / destaque (calendário, hero) */
   --shadow-sm: 0px 1px 3px rgba(27, 0, 102, 0.04);
   --shadow-md: 0px 2px 10px rgba(27, 0, 102, 0.05);
+
+  /* Cor de destaque (logo, ícones de marca, texto roxo) — vira mais clara no escuro pra manter contraste */
+  --brand-accent: var(--secundary-purple-500);
+}
+
+/* Tema escuro — ativado via classe "dark" no <html> (controlado pela tela de Configurações) */
+:root.dark {
+  --background: #14121f;
+  --foreground: #ECEAF6;
+  --white: #201d33;
+  --primary-offwhite-500: #1a1830;
+  --primary-offwhite-400: #211e38;
+  --highlight-black-500: #ECEAF6;
+  --highlight-black-700: #C3C0DB;
+  --highlight-black-800: #918dae;
+  --secundary-purple-950: #2b2650;
+  --shadow-sm: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0px 2px 10px rgba(0, 0, 0, 0.3);
+  --brand-accent: var(--secundary-purple-900);
 }
 
 
@@ -52,8 +71,39 @@ html {
   font-size: 16px;
 }
 
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
 @media (max-width: 600px) {
   html {
     font-size: 14px;
+  }
+}
+
+/* Tamanho de fonte configurável — controlado pela tela de Configurações */
+html[data-font-size="small"] {
+  font-size: 14px;
+}
+
+html[data-font-size="normal"] {
+  font-size: 16px;
+}
+
+html[data-font-size="large"] {
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  html[data-font-size="small"] {
+    font-size: 12px;
+  }
+
+  html[data-font-size="normal"] {
+    font-size: 14px;
+  }
+
+  html[data-font-size="large"] {
+    font-size: 16px;
   }
 }

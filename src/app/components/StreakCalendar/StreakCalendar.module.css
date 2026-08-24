@@ -36,7 +36,7 @@
   width: 38px;
   transform: rotate(-90deg);
   height: 38px;
-  color: var(--secundary-purple-500);
+  color: var(--brand-accent);
   align-self: center;
 }
 
@@ -46,8 +46,8 @@
 }
 
 .streakDay {
-  background: var(--secundary-purple-500) !important;
-  color: var(--primary-offwhite-500) !important;
+  background: var(--brand-accent) !important;
+  color: var(--white) !important;
   border-radius: 10px !important;
   font-weight: 400;
   outline: 4px solid var(--white) !important;
@@ -61,7 +61,7 @@
 }
 
 .weekendDay {
-  color: var(--secundary-purple-600) !important;
+  color: var(--brand-accent) !important;
   font-weight: 600;
 }
 
@@ -98,7 +98,7 @@
 }
 
 .legendDotStreak {
-  background: var(--secundary-purple-500);
+  background: var(--brand-accent);
 }
 
 .legendDotToday {

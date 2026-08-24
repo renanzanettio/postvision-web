@@ -26,6 +26,7 @@
 
 .chart {
   position: relative;
+  width: fit-content;
   transform: translate(0%, 20%);
 }
 
@@ -37,7 +38,7 @@
   min-width: 100px;
   font-size: 2rem;
   font-weight: bold;
-  color: #1b0066;
+  color: var(--brand-accent);
   align-items: center;
   justify-content: center;
   z-index: -1;
@@ -52,6 +53,7 @@
 
   .chart {
     position: relative;
+    width: 100%;
     transform: translate(0%, 10%);
   }
 
