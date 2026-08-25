@@ -19,16 +19,16 @@ interface SessionStats {
     streak: number;
     weekly: WeeklyData[];
     monthly: MonthlyData[];
-    /** duração média das sessões em segundos (retornado pela API) */
+    /** duração média das sessões, em segundos */
     avgDuration?: number;
-    /** precisão média em % entre todas as sessões (retornado pela API) */
+    /** precisão média (%) entre todas as sessões */
     avgAccuracy?: number;
 }
 
 interface SessionContextType {
     stats: SessionStats | null;
     loading: boolean;
-    /** true assim que sabemos que o usuário já tem pelo menos 1 sessão registrada */
+    /** usuário já tem pelo menos 1 sessão registrada */
     hasSessions: boolean;
     refresh: () => Promise<void>;
 }
@@ -67,10 +67,8 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         fetchStats();
     }, [usuario?.id_usuario]);
 
-    // "weekly" só cobre os últimos 7 dias e pode estar vazio mesmo com
-    // histórico antigo, então também conferimos "monthly" (que agrega
-    // TODAS as sessões por dia) e a própria duração média antes de
-    // decidir que o usuário realmente nunca treinou.
+    // "weekly" só olha os últimos 7 dias, então também checa "monthly"
+    // e a duração média antes de dizer que o usuário nunca treinou.
     const hasSessions =
         !!stats &&
         (

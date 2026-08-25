@@ -25,7 +25,6 @@ export default function Settings() {
     if (cacheStatus === "clearing") return;
     setCacheStatus("clearing");
 
-    // Limpa dados armazenados no navegador que não sejam de autenticação
     try {
       sessionStorage.clear();
 
@@ -38,7 +37,7 @@ export default function Settings() {
         caches.keys().then((names) => names.forEach((name) => caches.delete(name)));
       }
     } catch {
-      // silencioso — algumas dessas APIs podem não existir no ambiente
+      // ignora se alguma dessas APIs não existir no navegador
     }
 
     setTimeout(() => {

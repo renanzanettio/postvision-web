@@ -11,15 +11,8 @@ const THEME_KEY = "pv_theme";
 const FONT_SIZE_KEY = "pv_font_size";
 const LANGUAGE_KEY = "pv_language";
 
-/**
- * Dicionário de traduções.
- *
- * Cobre a tela de Configurações (o pedido original) e alguns textos
- * compartilhados. Para traduzir o resto do site, basta ir adicionando
- * chaves novas aqui e trocando o texto estático pelo `t("chave")`
- * nos componentes — a infraestrutura (contexto + persistência) já
- * funciona para o app inteiro.
- */
+// traduções da tela de Configurações + histórico. Pra traduzir outras
+// telas: adiciona a chave aqui e troca o texto fixo por t("chave").
 const dictionaries = {
   pt: {
     "settings.title": "Configurações",
@@ -156,12 +149,10 @@ export function AppSettingsProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>("pt");
   const pathname = usePathname();
 
-  // Rotas públicas (home, login, cadastro) sempre ficam no modo claro,
-  // independente da preferência salva — o modo escuro é só pro dashboard.
+  // login/cadastro/home ficam sempre claras, independente do que o usuário salvou
   const isPublicRoute =
     pathname === "/" || pathname?.startsWith("/Entrar") || pathname?.startsWith("/Cadastro");
 
-  // Carrega preferências salvas assim que monta no cliente
   useEffect(() => {
     const savedTheme = localStorage.getItem(THEME_KEY) as Theme | null;
     const savedFontSize = localStorage.getItem(FONT_SIZE_KEY) as FontSize | null;
@@ -176,18 +167,16 @@ export function AppSettingsProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Aplica o tema no <html> — mas força claro nas páginas públicas
+  // força claro nas rotas públicas, mesmo com o tema escuro salvo
   useEffect(() => {
     const shouldApplyDark = theme === "dark" && !isPublicRoute;
     document.documentElement.classList.toggle("dark", shouldApplyDark);
   }, [theme, isPublicRoute]);
 
-  // Aplica o tamanho de fonte no <html>
   useEffect(() => {
     document.documentElement.setAttribute("data-font-size", fontSize);
   }, [fontSize]);
 
-  // Aplica o idioma no <html lang="">
   useEffect(() => {
     document.documentElement.lang = language;
   }, [language]);

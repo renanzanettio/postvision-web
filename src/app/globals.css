@@ -19,18 +19,18 @@
   --highlight-black-800: #979797;
   --white: #ffffff;
 
-  /* Design tokens — mantém consistência de cantos e elevação no site inteiro */
+  /* radius e sombra padrão pra tudo (cards, botões, gráficos, calendário) */
   --radius-sm: 8px;   /* botões, pills, pequenos elementos */
   --radius-md: 10px;  /* cards de conteúdo (dashboard, about) */
   --radius-lg: 18px;  /* blocos grandes / destaque (calendário, hero) */
   --shadow-sm: 0px 1px 3px rgba(27, 0, 102, 0.04);
   --shadow-md: 0px 2px 10px rgba(27, 0, 102, 0.05);
 
-  /* Cor de destaque (logo, ícones de marca, texto roxo) — vira mais clara no escuro pra manter contraste */
+  /* logo/ícones roxos — clareia no escuro pra não sumir no fundo */
   --brand-accent: var(--secundary-purple-500);
 }
 
-/* Tema escuro — ativado via classe "dark" no <html> (controlado pela tela de Configurações) */
+/* modo escuro (classe "dark" no html, liga na tela de Configurações) */
 :root.dark {
   --background: #14121f;
   --foreground: #ECEAF6;
@@ -81,7 +81,7 @@ body {
   }
 }
 
-/* Tamanho de fonte configurável — controlado pela tela de Configurações */
+/* tamanho de fonte (também liga na tela de Configurações) */
 html[data-font-size="small"] {
   font-size: 14px;
 }

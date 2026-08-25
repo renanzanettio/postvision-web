@@ -5,9 +5,8 @@ import { useSession } from "@/app/(dashboard)/SessionContext";
 export default function AverageRow() {
   const { stats, loading, hasSessions } = useSession();
 
-  // "avgDuration" vem da API em segundos (duração média das sessões);
-  // usamos isso como a "Média Diária" por ser o dado mais próximo
-  // disponível — a API não retorna uma média por dia separada.
+  // avgDuration vem em segundos e é a duração média por sessão — não
+  // existe um campo "média diária" separado na API, então uso esse
   const avgDurationMin =
     typeof stats?.avgDuration === "number" ? Math.round(stats.avgDuration / 60) : null;
 

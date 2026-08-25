@@ -31,9 +31,7 @@ export default function LastTrainingCharts() {
     { name: "Incorretos", value: incorretos },
   ];
 
-  // Mesmo tendo sessões antigas, pode não existir uma dentro dos
-  // últimos 7 dias (janela usada por "weekly") — nesse caso também
-  // não há um "último treino" recente pra mostrar.
+  // pode ter sessões antigas mas nenhuma nos últimos 7 dias (janela do "weekly")
   const hasRecentSession = hasSessions && !!lastSession && total > 0;
 
   return (
